@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">QuizLock</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="sets">Sets</string>
+    <string name="no_content">No Content</string>
+    <string name="action_settings">Settings</string>
+</resources>
