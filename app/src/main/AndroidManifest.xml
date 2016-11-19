@@ -33,7 +33,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ViewSetActivity" />
         <activity android:name=".ImportActivity" />
-        <activity android:name=".InputTextActivity" />
+        <activity
+            android:name=".InputTextActivity"
+            android:label="Create a New Set"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
 
         <!--Lock screen 1-->
