@@ -56,13 +56,12 @@ public class LockScreenActivity extends Activity {
     }
 
     /**
-     * A simple method that sets the screen to fullscreen.  It removes the Notifications bar,
-     *   the Actionbar and the virtual keys (if they are on the phone)
+     * Sets the screen to fullscreen by removing the notifications bar, actionbar, etc.
      */
     public void makeFullScreen() {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if(Build.VERSION.SDK_INT < 19) { //View.SYSTEM_UI_FLAG_IMMERSIVE is only on API 19+
+        if(Build.VERSION.SDK_INT < 19) {
             this.getWindow().getDecorView()
                     .setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
         } else {
@@ -73,7 +72,7 @@ public class LockScreenActivity extends Activity {
 
     @Override
     public void onBackPressed() {
-        return; //Do nothing on back press
+        return; //disable back press
     }
 
     //TODO: Block home and recent apps button press
@@ -83,7 +82,7 @@ public class LockScreenActivity extends Activity {
      * @param view
      */
     public void unlockScreen(View view) {
-        //Instead of using finish(), this totally destroys the process
+        //Stop process
         //finish() ends current activity whereas destroying process ends all activity associated with this application
         EditText def = (EditText) findViewById(R.id.answer);
         //Compare user input to definition

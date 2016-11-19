@@ -17,6 +17,7 @@ public class LockScreenReceiver extends BroadcastReceiver {
 
     /**
      * Start new lock screen activity
+     * TODO: check that only one lock screen activity i
      * @param context
      */
     private void start_lockscreen(Context context) {
