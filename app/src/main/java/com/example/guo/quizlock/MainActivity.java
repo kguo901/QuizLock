@@ -4,20 +4,31 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.guo.quizlock.LockScreen.LockScreenService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     //Declare database helper
     DatabaseHelper myDb;
+    List<Card> set = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,28 +64,72 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        displayData();
+        populateCardsList();
+        displaySet();
     }
 
-    private void displayData(){
+    private void populateCardsList(){
         //TODO: declare database this in another service to speed up app
         //initialize database helper and get all data from database
         myDb = new DatabaseHelper(getApplicationContext(), "database.db", null, 1);
         SQLiteDatabase db = myDb.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from cardset", null);
+        //Cursor cursor = db.rawQuery("select * from cardset", null);
 
         //Display database contents
-        TextView textView = (TextView) findViewById(R.id.sets);
+        //TextView textView = (TextView) findViewById(R.id.message);
         Cursor cursor1 = myDb.getAllData();
-        if(cursor1.getCount()==0){
-            textView.setText("Database Empty");
-        }else {
-            textView.setText("");
+        if(cursor1.getCount() > 0){
+            //textView.setText("Database Empty");
+        //}else {
+            //textView.setText("");
+
             while(cursor1.moveToNext()){
-                textView.append("ID: " + cursor1.getString(0) + "\n");
-                textView.append("Term: " + cursor1.getString(1) + "\n");
-                textView.append("Definition: " + cursor1.getString(2) + "\n");
+                //textView.append("Term: " + cursor1.getString(1) + "\n");
+                //textView.append("Definition: " + cursor1.getString(2) + "\n");
+                set.add(new Card(cursor1.getString(1), cursor1.getString(2)));
             }
         }
+    }
+
+    private void displaySet(){
+        ArrayAdapter<Card> arrayAdapter = new MyListAdapter();
+        ListView listView = (ListView) findViewById(R.id.sets);
+        listView.setAdapter(arrayAdapter);
+    }
+
+    private class MyListAdapter extends ArrayAdapter<Card>{
+        public MyListAdapter(){
+            super(MainActivity.this, R.layout.set, set);
+        }
+
+        @Override
+        public int getCount() {
+            return set.size();
+        }
+
+        @Nullable
+        @Override
+        public Card getItem(int position) {
+            return super.getItem(position);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View itemView = convertView;
+            if(itemView == null){
+                itemView = getLayoutInflater().inflate(R.layout.set, parent, false);
+            }
+
+            Card currentC = set.get(position);
+
+            TextView term = (TextView) itemView.findViewById(R.id.term);
+            term.setText(currentC.getTerm());
+            TextView def = (TextView) itemView.findViewById(R.id.definition);
+            def.setText(currentC.getDef());
+            def.setText(Integer.toString(position));
+            return itemView;
+        }
+
+
     }
 }

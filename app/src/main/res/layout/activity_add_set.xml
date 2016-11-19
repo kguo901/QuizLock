@@ -55,8 +55,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Set"
-            android:onClick="parseFile"/>
+            android:text="Paste Text"
+            android:onClick="startInputTextActivity"/>
 
     </RelativeLayout>
 

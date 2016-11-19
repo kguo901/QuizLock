@@ -1,6 +1,8 @@
 package com.example.guo.quizlock;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -8,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class AddSetActivity extends AppCompatActivity {
 
@@ -37,7 +40,12 @@ public class AddSetActivity extends AppCompatActivity {
         });
     }
 
-    public void parseFile(View view){
+    public void startInputTextActivity(View view){
+        Intent intent = new Intent(AddSetActivity.this, InputTextActivity.class);
+        startActivity(intent);
+    }
+
+   /* public void parseFile(View view){
         //TODO: Place this with actual input options using InputTextActivity and ImportActivity
         DatabaseHelper myDb = new DatabaseHelper(getApplication(), "database.db", null, 1);
         //TODO: be able to detect errors in file formatting
@@ -45,9 +53,16 @@ public class AddSetActivity extends AppCompatActivity {
         myDb.insertData("What color is grass?", "green");
         myDb.insertData("What shape is Earth?", "sphere");
         //TODO: refresh main activity content after inserting data
-        //finishActivity(1);
-       // startActivity(new Intent(AddSetActivity.this, MainActivity.class));
         finish();
-       // android.os.Process.killProcess(android.os.Process.myPid());
-    }
+    }*/
+
+    /*private void addSet(){
+        setContentView(R.layout.activity_add_set);
+        DatabaseHelper myDb = new DatabaseHelper(getApplicationContext(), "database.db", null, 1);
+        SQLiteDatabase db = myDb.getReadableDatabase();
+        Cursor cursor = db.rawQuery("select * from cardset", null);
+
+        //Display database contents
+        TextView textView = (TextView) findViewById(R.id.sets);
+    }*/
 }
