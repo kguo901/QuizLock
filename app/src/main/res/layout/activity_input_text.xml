@@ -101,7 +101,7 @@
             android:textSize="20sp"
             android:background="#ffffff"
             android:layout_marginBottom="10dp"
-            android:inputType="text"
+            android:inputType="textMultiLine"
             android:hint="Enter cards"/>
     </LinearLayout>
 
