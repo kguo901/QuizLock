@@ -10,6 +10,8 @@
     <string name="add_widget">Add widget</string>
     <string name="question">Question:</string>
 
+    <string name="title_activity_paste_card">Paste Card</string>
+
     <string name="title_activity_lockscreen">LockscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
