@@ -1,4 +1,4 @@
-package com.example.guo.quizlock;
+package com.example.guo.quizlock.TestFiles2;
 
 import android.app.Notification;
 import android.app.Service;
@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
+
+import com.example.guo.quizlock.R;
+import com.example.guo.quizlock.TestFiles2.LockscreenIntentReceiver;
 
 public class LockscreenService extends Service {
 

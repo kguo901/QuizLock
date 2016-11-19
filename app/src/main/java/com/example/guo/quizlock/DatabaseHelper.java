@@ -1,6 +1,8 @@
 package com.example.guo.quizlock;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -29,5 +31,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists " + TABLE_NAME);
         onCreate(db);
+    }
+
+    public boolean insertData(String term, String def){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TERM, term);
+        values.put(DEFINITION, def);
+        long result = db.insert(TABLE_NAME, null, values);
+        return result != -1;
+    }
+
+    public Cursor getAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME, null);
+        return cursor;
+    }
+
+    public String[] getData(String id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where id = ?", new String[] {id});
+
+        String term = cursor.getString(1);
+        String def = cursor.getString(2);
+
+        cursor.close();
+        return new String[] {term, def};
     }
 }

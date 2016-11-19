@@ -1,20 +1,18 @@
-package com.example.guo.quizlock;
+package com.example.guo.quizlock.TestFiles2;
 
 import android.app.Activity;
 import android.app.KeyguardManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 
-public class LockScreenActivity extends Activity implements
-        LockscreenUtils.OnLockStatusChangedListener {
+import com.example.guo.quizlock.R;
+
+public class LockscreenActivity extends Activity implements LockscreenUtils.OnLockStatusChangedListener {
 
     // User-interface
     private Button btnUnlock;
@@ -23,7 +21,7 @@ public class LockScreenActivity extends Activity implements
     private LockscreenUtils mLockscreenUtils;
 
     // Set appropriate flags to make the screen appear over the keyguard
-    @Override
+    /*@Override
     public void onAttachedToWindow() {
         this.getWindow().setType(
                 WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
@@ -35,7 +33,7 @@ public class LockScreenActivity extends Activity implements
         );
 
         super.onAttachedToWindow();
-    }
+    }*/
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +42,7 @@ public class LockScreenActivity extends Activity implements
         setContentView(R.layout.activity_lock_screen);
 
         init();
-
+/*
         // unlock screen in case of app get killed by system
         if (getIntent() != null && getIntent().hasExtra("kill")
                 && getIntent().getExtras().getInt("kill") == 1) {
@@ -71,7 +69,7 @@ public class LockScreenActivity extends Activity implements
             } catch (Exception e) {
             }
 
-        }
+        }*/
     }
 
     private void init() {
@@ -121,9 +119,17 @@ public class LockScreenActivity extends Activity implements
                 || (keyCode == KeyEvent.KEYCODE_CAMERA)) {
             return true;
         }
-        if ((keyCode == KeyEvent.KEYCODE_HOME)) {
+       /* if ((keyCode == KeyEvent.KEYCODE_HOME)) {
 
             return true;
+        }*/
+        if(keyCode == KeyEvent.KEYCODE_HOME)
+        {
+            Log.i("Home Button","Clicked");
+        }
+        if(keyCode==KeyEvent.KEYCODE_BACK)
+        {
+            finish();
         }
 
         return false;
@@ -146,7 +152,7 @@ public class LockScreenActivity extends Activity implements
 
     // Lock home button
     public void lockHomeButton() {
-        mLockscreenUtils.lock(LockScreenActivity.this);
+        mLockscreenUtils.lock(LockscreenActivity.this);
     }
 
     // Unlock home button and wait for its callback

@@ -1,4 +1,4 @@
-package com.example.guo.quizlock;
+package com.example.guo.quizlock.TestFiles2;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,6 +9,8 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+
+import com.example.guo.quizlock.R;
 
 public class LockscreenUtils {
 
@@ -60,7 +62,7 @@ public class LockscreenUtils {
     private static class OverlayDialog extends AlertDialog {
 
         public OverlayDialog(Activity activity) {
-            super(activity, R.style.AppTheme_AppBarOverlay);
+            super(activity, R.style.OverlayDialog);
             WindowManager.LayoutParams params = getWindow().getAttributes();
             params.type = LayoutParams.TYPE_SYSTEM_ERROR;
             params.dimAmount = 0.0F;

@@ -13,7 +13,10 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:fullBackupContent="true">
+
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -21,40 +24,86 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".AddSetActivity"
-            android:label="@string/title_activity_add_set"
+            android:label="Create a New Set"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ViewSetActivity" />
         <activity android:name=".ImportActivity" />
         <activity android:name=".InputTextActivity" />
+
+
+        <!--Lock screen 1-->
+
+
         <activity
-            android:name=".LockScreenActivity"
+            android:name=".LockScreen.LockScreenActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:excludeFromRecents="true">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+
+        <service android:name=".LockScreen.LockScreenService" />
+
+        <receiver
+            android:name=".LockScreen.LockScreenReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.SCREEN_OFF"/>
+                <action android:name="android.intent.action.SCREEN_ON"/>
+            </intent-filter>
+        </receiver>
+
+        <!--
+        <receiver android:name=".NewAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/new_app_widget_info" />
+        </receiver>
+        -->
+
+        <!--Lock screen 2-->
+
+        <!--
+        <activity
+            android:name=".LockscreenActivity"
             android:excludeFromRecents="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:showOnLockScreen="true"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <service android:name=".LockscreenService" >
-        </service>
+        <service
+            android:name=".LockscreenService"
+            android:enabled="true"
+            android:exported="false"/>
 
         <receiver
             android:name=".LockscreenIntentReceiver"
-            android:enabled="true" >
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
     </application>
 
 </manifest>
