@@ -48,7 +48,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
-    public String[] getData(String id){
+    public void clearAllData(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("drop table " + TABLE_NAME);
+        db.execSQL("create table " + TABLE_NAME +
+                " (ID Integer primary key autoincrement, TERM text, DEFINITION, text)");
+    }
+
+    /*public String[] getData(String id){
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from " + TABLE_NAME + " where id = ?", new String[] {id});
 
@@ -57,5 +64,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return new String[] {term, def};
-    }
+    }*/
 }

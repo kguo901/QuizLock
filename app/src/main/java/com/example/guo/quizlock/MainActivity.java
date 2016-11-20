@@ -8,11 +8,13 @@ import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -24,6 +26,7 @@ import com.example.guo.quizlock.LockScreen.LockScreenService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class MainActivity extends AppCompatActivity {
     //Declare database helper
@@ -63,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ListView listView = (ListView) findViewById(R.id.sets);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                deleteAll();
+                return true;
+            }
+        });
+
         populateCardsList();
         displaySet();
     }
@@ -71,15 +84,31 @@ public class MainActivity extends AppCompatActivity {
         //TODO: declare database this in another service to speed up app
         //initialize database helper and get all data from database
         myDb = new DatabaseHelper(getApplicationContext(), "database.db", null, 1);
+
+        myDb.insertData("Term","Definition");
         SQLiteDatabase db = myDb.getReadableDatabase();
 
         Cursor cursor1 = myDb.getAllData();
-
         if(cursor1.getCount() > 0){
             while(cursor1.moveToNext()){
                 set.add(new Card(cursor1.getString(1), cursor1.getString(2)));
             }
         }
+    }
+
+    public void deleteAll(){
+        //prompt delete all option
+        final ListView linearLayout = (ListView) findViewById(R.id.sets);
+        Snackbar bar = Snackbar.make(linearLayout, "The answer was wrong.", Snackbar.LENGTH_LONG)
+                .setAction("Delete All", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        myDb.clearAllData();
+                        refresh(linearLayout);
+                    }
+                });
+
+        bar.show();
     }
 
     public void refresh(View view){

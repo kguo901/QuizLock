@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.guo.quizlock.DatabaseHelper;
@@ -18,8 +19,6 @@ import java.util.Random;
 
 public class LockScreenActivity extends Activity
 {
-    private CoordinatorLayout coordinatorLayout;
-
     //initialize default card
     private String[] card = {"Press Unlock", ""};
 
@@ -97,8 +96,19 @@ public class LockScreenActivity extends Activity
         }
         else
         {
+            /*CoordinatorLayout coordinatorLayout = new CoordinatorLayout();
             Snackbar notify = Snackbar.make(coordinatorLayout, "The answer was wrong.", Snackbar.LENGTH_SHORT);
-            notify.show();
+            notify.show();*/
+            LinearLayout linearLayout = (LinearLayout) findViewById(R.id.lockscreenlayout);
+            Snackbar bar = Snackbar.make(linearLayout, "The answer was wrong.", Snackbar.LENGTH_LONG)
+                    .setAction("Unlock Anyway", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            android.os.Process.killProcess(android.os.Process.myPid());
+                        }
+                    });
+
+            bar.show();
         }
     }
 }
