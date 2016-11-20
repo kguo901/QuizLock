@@ -8,11 +8,16 @@
         android:id="@+id/term"
         android:layout_width="200dp"
         android:textSize="@dimen/body_font_size"
+        android:paddingStart="@dimen/text_margin"
+        android:paddingTop="@dimen/text_margin"
         android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/definition"
         android:layout_width="wrap_content"
         android:textSize="@dimen/body_font_size"
+        android:paddingStart="@dimen/text_margin"
+        android:paddingTop="@dimen/text_margin"
+        android:paddingEnd="@dimen/text_margin"
         android:layout_height="match_parent" />
 </LinearLayout>

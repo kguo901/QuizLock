@@ -90,15 +90,46 @@
         app:layout_anchorGravity="bottom|end"
         android:layout_gravity="bottom|end"/>
 
-    <ListView
-        android:id="@+id/sets"
+
+    <TextView
+        android:id="@+id/nocontent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".MainActivity"
-        tools:showIn="@layout/activity_main">
+        tools:showIn="@layout/activity_main"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="200dp"
+                android:text="Term"
+                android:paddingStart="@dimen/text_margin"
+                android:layout_height="match_parent" />
 
-    </ListView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingStart="@dimen/text_margin"
+                android:paddingEnd="@dimen/text_margin"
+                android:text="Definition"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <ListView
+            android:id="@+id/sets"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            tools:context=".MainActivity"
+            tools:showIn="@layout/activity_main"
+            android:layout_height="400dp">
+
+        </ListView>
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

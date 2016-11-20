@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
         //initialize database helper and get all data from database
         myDb = new DatabaseHelper(getApplicationContext(), "database.db", null, 1);
 
-        myDb.insertData("Term","Definition");
         SQLiteDatabase db = myDb.getReadableDatabase();
 
         Cursor cursor1 = myDb.getAllData();
@@ -93,13 +92,17 @@ public class MainActivity extends AppCompatActivity {
             while(cursor1.moveToNext()){
                 set.add(new Card(cursor1.getString(1), cursor1.getString(2)));
             }
+        } else {
+            TextView nocontent = (TextView) findViewById(R.id.nocontent);
+            //no content message
+            nocontent.setText("");
         }
     }
 
     public void deleteAll(){
         //prompt delete all option
         final ListView linearLayout = (ListView) findViewById(R.id.sets);
-        Snackbar bar = Snackbar.make(linearLayout, "The answer was wrong.", Snackbar.LENGTH_LONG)
+        Snackbar bar = Snackbar.make(linearLayout, "Delete all cards in set.", Snackbar.LENGTH_LONG)
                 .setAction("Delete All", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

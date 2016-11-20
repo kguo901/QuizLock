@@ -40,7 +40,7 @@ public class LockScreenActivity extends Activity
         TextView term = (TextView) findViewById(R.id.question);
         term.setText("");
         if(cursor.getCount() > 0){
-            int rand = new Random().nextInt(cursor.getCount());
+            int rand = new Random().nextInt(cursor.getCount()+1);
             while(rand > 0){
                 cursor.moveToNext();
                 rand--;
@@ -52,7 +52,7 @@ public class LockScreenActivity extends Activity
         }
 
         //display term in lock screen
-        term.setText(card[0]);
+        term.setText(card[1]);
 
         //close cursor
         cursor.close();
@@ -90,7 +90,7 @@ public class LockScreenActivity extends Activity
         //finish() ends current activity whereas destroying process ends all activity associated with this application
         EditText def = (EditText) findViewById(R.id.answer);
         //Compare user input to definition
-        if(card[1].compareTo(def.getText().toString()) == 0)
+        if(card[0].compareTo(def.getText().toString()) == 0)
         {
             android.os.Process.killProcess(android.os.Process.myPid());
         }
@@ -100,7 +100,7 @@ public class LockScreenActivity extends Activity
             Snackbar notify = Snackbar.make(coordinatorLayout, "The answer was wrong.", Snackbar.LENGTH_SHORT);
             notify.show();*/
             LinearLayout linearLayout = (LinearLayout) findViewById(R.id.lockscreenlayout);
-            Snackbar bar = Snackbar.make(linearLayout, "The answer was wrong.", Snackbar.LENGTH_LONG)
+            Snackbar bar = Snackbar.make(linearLayout, "Solution/Hint: \n" + card[0], Snackbar.LENGTH_LONG)
                     .setAction("Unlock Anyway", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
