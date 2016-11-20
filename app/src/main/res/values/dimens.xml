@@ -1,8 +1,8 @@
 <resources>
-    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="app_bar_height">200dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="text_margin">16dp</dimen>
-    <dimen name="header_font_size">22sp</dimen>
+    <dimen name="header_font_size">20sp</dimen>
     <dimen name="body_font_size">15sp</dimen>
     <dimen name="text_box_width">250dp</dimen>
     <dimen name="text_box_height">40dp</dimen>

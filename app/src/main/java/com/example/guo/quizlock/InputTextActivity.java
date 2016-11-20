@@ -19,21 +19,21 @@ public class InputTextActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_text);
 
-        Button doneButton = (Button)findViewById(R.id.doneButton);
+        /*Button doneButton = (Button)findViewById(R.id.doneButton);
         doneButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
                 // Get title name
-                EditText title = (EditText) findViewById(R.id.titleName);
-                String titleName = title.getText().toString();
+                //EditText title = (EditText) findViewById(R.id.titleName);
+                ///String titleName = title.getText().toString();
 
                 // Get cards
                 EditText card = (EditText) findViewById(R.id.cardContent);
                 String input = card.getText().toString();
                 saveCard(input);
             }
-        });
+        });*/
 
         ImageView fab = (ImageView) findViewById(R.id.back);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +44,14 @@ public class InputTextActivity extends AppCompatActivity
         });
     }
 
+    public void done(View view)
+    {
+        // Get cards
+        EditText card = (EditText) findViewById(R.id.cardContent);
+        String input = card.getText().toString();
+        saveCard(input);
+        finish();
+    }
     public void saveCard(String inputText)
     {
         DatabaseHelper myDb = new DatabaseHelper(getApplicationContext(), "database.db", null, 1);;

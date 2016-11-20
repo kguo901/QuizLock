@@ -44,14 +44,23 @@
                 android:layout_width="match_parent"
                 android:orientation="horizontal"
                 android:layout_gravity="bottom"
-                android:weightSum="5">
+                android:weightSum="4">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/text_margin"
-                    android:text="@string/sets"
+                    android:text="Cards"
                     android:textSize="@dimen/header_font_size"
-                    android:layout_weight="3"/>
+                    android:layout_weight="1"/>
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/refresh"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="50dp"
+                    android:onClick="refresh"
+                    />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddSetActivity.class);
                 startActivity(intent);
-                //startActivityForResult(intent, 1);
             }
         });
 
@@ -73,22 +72,18 @@ public class MainActivity extends AppCompatActivity {
         //initialize database helper and get all data from database
         myDb = new DatabaseHelper(getApplicationContext(), "database.db", null, 1);
         SQLiteDatabase db = myDb.getReadableDatabase();
-        //Cursor cursor = db.rawQuery("select * from cardset", null);
 
-        //Display database contents
-        //TextView textView = (TextView) findViewById(R.id.message);
         Cursor cursor1 = myDb.getAllData();
         if(cursor1.getCount() > 0){
-            //textView.setText("Database Empty");
-        //}else {
-            //textView.setText("");
-
             while(cursor1.moveToNext()){
-                //textView.append("Term: " + cursor1.getString(1) + "\n");
-                //textView.append("Definition: " + cursor1.getString(2) + "\n");
                 set.add(new Card(cursor1.getString(1), cursor1.getString(2)));
             }
         }
+    }
+
+    public void refresh(View view){
+        finish();
+        startActivity(getIntent());
     }
 
     private void displaySet(){
@@ -96,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.sets);
         listView.setAdapter(arrayAdapter);
     }
+
+
 
     private class MyListAdapter extends ArrayAdapter<Card>{
         public MyListAdapter(){
@@ -126,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
             term.setText(currentC.getTerm());
             TextView def = (TextView) itemView.findViewById(R.id.definition);
             def.setText(currentC.getDef());
-            def.setText(Integer.toString(position));
             return itemView;
         }
 

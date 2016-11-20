@@ -22,15 +22,6 @@ public class AddSetActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
-
         ImageView fab = (ImageView) findViewById(R.id.back);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +34,7 @@ public class AddSetActivity extends AppCompatActivity {
     public void startInputTextActivity(View view){
         Intent intent = new Intent(AddSetActivity.this, InputTextActivity.class);
         startActivity(intent);
+        finish();
     }
 
    /* public void parseFile(View view){
