@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase db = myDb.getReadableDatabase();
 
         Cursor cursor1 = myDb.getAllData();
+
         if(cursor1.getCount() > 0){
             while(cursor1.moveToNext()){
                 set.add(new Card(cursor1.getString(1), cursor1.getString(2)));
