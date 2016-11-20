@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.database.Cursor;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -14,7 +16,9 @@ import com.example.guo.quizlock.R;
 
 import java.util.Random;
 
-public class LockScreenActivity extends Activity {
+public class LockScreenActivity extends Activity
+{
+    private CoordinatorLayout coordinatorLayout;
 
     //initialize default card
     private String[] card = {"Press Unlock", ""};
@@ -81,13 +85,20 @@ public class LockScreenActivity extends Activity {
      * Checks to see if input is correct before unlocking screen
      * @param view
      */
-    public void unlockScreen(View view) {
+    public void unlockScreen(View view)
+    {
         //Stop process
         //finish() ends current activity whereas destroying process ends all activity associated with this application
         EditText def = (EditText) findViewById(R.id.answer);
         //Compare user input to definition
-        if(card[1].compareTo(def.getText().toString()) == 0) {
+        if(card[1].compareTo(def.getText().toString()) == 0)
+        {
             android.os.Process.killProcess(android.os.Process.myPid());
+        }
+        else
+        {
+            Snackbar notify = Snackbar.make(coordinatorLayout, "The answer was wrong.", Snackbar.LENGTH_SHORT);
+            notify.show();
         }
     }
 }
